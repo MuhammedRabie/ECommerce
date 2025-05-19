@@ -14,11 +14,10 @@ A responsive and user-friendly e-commerce website built with HTML, CSS, JavaScri
 ## Technologies Used
 
 - HTML5 & CSS3  
-- JavaScript (ES5)  
-- Bootstrap 4/5 (depending on your version)  
+- JavaScript (ES5 & ES6)  
+- Bootstrap
 - No backend integration (can be extended to use APIs or databases)  
 
-## Project Structure
 
 
 json-server --watch shared/data.json --port=5000
