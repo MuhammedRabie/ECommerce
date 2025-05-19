@@ -1,0 +1,246 @@
+:root {
+  --primary-color: #2105f5;
+  --secondary-color: #da11e7;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #173ab8;
+  --dark-color: #343a40;
+  --white-color: #fff;
+  --black-color: #000;
+  --body-bg-color: #f8f9fa;
+  --body-color: #212529;
+  --font-family-sans-serif: "Roboto", sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  background-color: var(--body-bg-color);
+  color: var(--body-color);
+  font-family: var(--font-family-sans-serif);
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--white-color);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.categoryItem:hover {
+  transform: scale(1.05);
+}
+
+.bgGradient {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: var(--white-color);
+}
+
+.bgGradient:hover {
+  background: linear-gradient(
+    to right,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+  color: var(--white-color);
+}
+
+.hTwo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--dark-color);
+  text-align: center;
+  margin: 30px auto;
+  width: fit-content;
+  position: relative;
+  padding: 10px 30px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.hTwo::before,
+.hTwo::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 0;
+  border-radius: 50px;
+  transition: all 0.6s ease-in-out;
+}
+
+.hTwo::before {
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.hTwo::after {
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+}
+
+.hTwo:hover {
+  transform: scale(1.05);
+  color: #111;
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hTwo:hover::before,
+.hTwo:hover::after {
+  width: 100%;
+}
+
+.hTwo::first-letter {
+  color: var(--primary-color);
+  font-size: 3rem;
+  transition: all 0.4s ease-in-out;
+}
+
+.hTwo:hover::first-letter {
+  color: var(--secondary-color);
+}
+
+@keyframes slideInFade {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hTwo {
+  animation: slideInFade 0.8s ease-out both;
+}
+
+.btn {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.product-card {
+  width: 400px;
+  min-height: 600px;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 300px;
+  height: 250px;
+  margin: 0 30px;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: none;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease, transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.eye-icon {
+  display: none;
+}
+
+.product-card:hover .eye-icon {
+  display: flex;
+}
+
+.add-to-cart-btn {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(
+    to right,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+}
+.add-to-cart-btn-1 {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn-1:hover {
+  transform: scale(1.05);
+  background: linear-gradient(
+    to right,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+}
+.add-to-cart-btn-2 {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn-2:hover {
+  transform: scale(1.05);
+  background: linear-gradient(
+    to right,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+}
+.add-to-cart-btn-3 {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn-3:hover {
+  transform: scale(1.05);
+  background: linear-gradient(
+    to right,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+}

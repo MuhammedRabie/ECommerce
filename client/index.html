@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./assets/logoSite.icon" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      h2 {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      .carousel-container {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        transition: transform 0.3s;
+        height: 100%;
+      }
+
+      .card:hover .view-icon {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+      .view-icon .btn {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        padding: 0;
+      }
+      .card-img-top {
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+      .card .btn-outline-secondary {
+        padding: 6px 10px;
+        font-size: 1rem;
+        line-height: 1;
+        border-radius: 6px;
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      @media (max-width: 1253px) {
+        .carousel-control-prev,
+        .carousel-control-next {
+          display: none;
+        }
+      }
+
+      .carousel-control-prev {
+        left: -60px;
+      }
+
+      .carousel-control-next {
+        right: -60px;
+      }
+
+      .carousel-indicators {
+        margin-bottom: -20px;
+      }
+
+      .carousel-item {
+        padding-bottom: 30px;
+        transition: 0.5s ease;
+      }
+      .carousel-item img {
+        width: 100%;
+        height: 90vh;
+        object-fit: cover;
+      }
+      .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .carousel-caption h5 {
+        font-weight: bold;
+        font-size: 2rem;
+        color: #fff;
+      }
+
+      .carousel-caption p {
+        font-style: italic;
+        font-size: 1.2rem;
+        color: #ddd;
+      }
+      #covercarousel .carousel-control-prev,
+      #covercarousel .carousel-control-next {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      #covercarousel:hover .carousel-control-prev,
+      #covercarousel:hover .carousel-control-next {
+        opacity: 1;
+      }
+
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .popup-box {
+        background: #fff;
+        padding: 20px;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        z-index: 20;
+      }
+
+      .popup-box .btn-close {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: red;
+      }
+
+      .popup-box textarea {
+        width: 100%;
+        height: 100px;
+        padding: 8px;
+        resize: none;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .stars span {
+        font-size: 30px;
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.3s;
+      }
+
+      .stars span.active {
+        color: gold;
+      }
+
+      .popup-box #submit-review {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .review-wrapper {
+        height: 150px;
+      }
+
+      .review-track {
+        display: flex;
+        gap: 2rem;
+        animation: scrollReviews 60s linear infinite;
+        will-change: transform;
+      }
+
+      .review-card {
+        min-width: 300px;
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+
+      .review-wrapper:hover .review-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes scrollReviews {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="review-popup" class="popup-overlay">
+      <div class="popup-box">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3>Leave a Review</h3>
+          <button id="close-popup" class="btn-close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="stars" id="star-rating">
+          <span><i data-value="1" class="bi bi-star-fill"></i></span>
+          <span><i data-value="2" class="bi bi-star-fill"></i></span>
+          <span><i data-value="3" class="bi bi-star-fill"></i></span>
+          <span><i data-value="4" class="bi bi-star-fill"></i></span>
+          <span><i data-value="5" class="bi bi-star-fill"></i></span>
+        </div>
+        <textarea
+          id="review-comment"
+          placeholder="Leave a comment..."
+        ></textarea>
+        <button id="submit-review"><i class="bi bi-send"></i> Send</button>
+      </div>
+    </div>
+
+    <header
+      class="container-fluid border-bottom border-3 border-dark bg-white sticky-top"
+    >
+      <nav class="navbar navbar-expand-lg container">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img
+              src="./assets/headerLogo.png"
+              style="width: 100px"
+              alt="Logo"
+            />
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#categories">Categories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#best-sales">Best Sales</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./all-products/index.html"
+                  >All Products</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex gap-2" id="header-actions">
+          <a class="btn btn-outline-dark" href="./login/index.html">Login</a>
+          <a class="btn btn-outline-dark" href="./register/index.html"
+            >Register</a
+          >
+          <a title="cart" class="btn btn-outline-dark" href="./cart/index.html"
+            ><i class="bi bi-cart4"></i>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container my-2">
+      <div
+        id="covercarousel"
+        class="carousel carousel-dark slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#covercarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#covercarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#covercarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="2000">
+            <img
+              src="./assets/cover/Maxx-Studio-Shutterstock.jpg"
+              class="d-block w-100"
+              alt="Slide 1"
+            />
+            <div class="carousel-caption d-none d-md-block bold italic">
+              <h5>Home Appliances</h5>
+              <p>Best Deals</p>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img
+              src="./assets/cover/Mobiles.jpg"
+              class="d-block w-100"
+              alt="Slide 2"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Mobile Phones</h5>
+              <p>Wide Variety</p>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img
+              src="./assets/cover/Kitchen.jpg"
+              class="d-block w-100"
+              alt="Slide 3"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Kitchen</h5>
+              <p>All Essentials</p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#covercarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#covercarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="features" class="container my-5">
+      <div class="row text-center g-4">
+        <div class="col-6 col-md-3">
+          <img src="./assets/features/shipping-icon.png" alt="24Hr Delivery" />
+          <h5>24Hr Delivery</h5>
+          <p>For Hassle Free Delivery</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <img src="./assets/features/package-icon.png" alt="secure package" />
+          <h5>Secure Package</h5>
+          <p>Get Fresh as you See!</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <img src="./assets/features/secure-icon.png" alt="Secure Payment" />
+          <h5>Secure Payment</h5>
+          <p>Your wallet is in safe zone!</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <img src="./assets/features/wallet-icon.png" alt="Refund" />
+          <h5>1 Week Refund</h5>
+          <p>Money Back Guarantee</p>
+        </div>
+        <hr />
+      </div>
+    </div>
+
+    <br />
+
+    <h2 id="categories" class="hTwo">Categories</h2>
+    <section
+      id="categoriesSection"
+      class="container d-flex flex-wrap gap-4 justify-content-center align-items-center my-5"
+    ></section>
+
+    <h2 class="hTwo">Best Sales</h2>
+    <section
+      id="best-sales"
+      class="overflow-hidden position-relative d-flex justify-content-start mx-auto"
+      style="width: 97%; min-height: 500px"
+    >
+      <div
+        id="slider-track"
+        class="d-flex container gap-3 align-items-center justify-content-start"
+      >
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-primary m-5" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        title="Previous"
+        id="prev-btn"
+        class="btn bgGradient rounded-circle position-absolute top-50 start-0 translate-middle-y -ms-2"
+      >
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <button
+        type="button"
+        title="Next"
+        id="next-btn"
+        class="btn bgGradient rounded-circle position-absolute top-50 end-0 translate-middle-y -me-2 ms-2"
+      >
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </section>
+
+    <h2 class="hTwo">Less Quantity Products</h2>
+    <section
+      id="less-quality"
+      class="overflow-hidden position-relative d-flex justify-content-start mx-auto"
+      style="width: 97%; min-height: 500px"
+    >
+      <div
+        id="slider-track-less"
+        class="d-flex container gap-3 align-items-center justify-content-start"
+      >
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-primary m-5" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        title="Previous"
+        id="prev-btn-less"
+        class="btn bgGradient rounded-circle position-absolute top-50 start-0 translate-middle-y -ms-2"
+      >
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <button
+        type="button"
+        title="Next"
+        id="next-btn-less"
+        class="btn bgGradient rounded-circle position-absolute top-50 end-0 translate-middle-y -me-2 ms-2"
+      >
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </section>
+
+    <h2 class="hTwo">New Arrivals</h2>
+    <section
+      id="new-arrivals"
+      class="overflow-hidden position-relative d-flex justify-content-start mx-auto"
+      style="width: 97%; min-height: 500px"
+    >
+      <div
+        id="slider-track-new"
+        class="d-flex container gap-3 align-items-center justify-content-start"
+      >
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-primary m-5" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        title="Previous"
+        id="prev-btn-new"
+        class="btn bgGradient rounded-circle position-absolute top-50 start-0 translate-middle-y -ms-2"
+      >
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <button
+        type="button"
+        title="Next"
+        id="next-btn-new"
+        class="btn bgGradient rounded-circle position-absolute top-50 end-0 translate-middle-y -me-2 ms-2"
+      >
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </section>
+
+    <section class="bg-light py-5">
+      <div class="container">
+        <h2 class="hTwo">What Our Customers Say</h2>
+        <div class="review-wrapper overflow-hidden position-relative">
+          <div class="review-track d-flex"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container-fluid bg-white border-top border-3 border-dark py-4">
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="container row justify-content-around align-items-start">
+          <div class="col-md-3 mb-3 mb-md-0">
+            <h5 class="fw-bold mb-3 text-dark">Follow Us</h5>
+            <a
+              title="facebook"
+              rel="noopener"
+              href="https://facebook.com"
+              target="_blank"
+              class="text-primary fs-4 mx-2"
+            >
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a
+              title="instagram"
+              rel="noopener"
+              href="https://instagram.com"
+              target="_blank"
+              class="text-danger fs-4 mx-2"
+            >
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a
+              title="twitter"
+              rel="noopener"
+              href="https://twitter.com"
+              target="_blank"
+              class="text-info fs-4 mx-2"
+            >
+              <i class="bi bi-twitter"></i>
+            </a>
+            <a
+              title="youtube"
+              rel="noopener"
+              href="https://youtube.com"
+              target="_blank"
+              class="text-danger fs-4 mx-2"
+            >
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+
+          <div class="col-md-3 mb-3 mb-md-0">
+            <h5 class="fw-bold mb-3 text-dark">Quick Links</h5>
+            <a href="#" class="text-dark d-block mb-1 text-decoration-none"
+              >About Us</a
+            >
+            <a href="#" class="text-dark d-block mb-1 text-decoration-none"
+              >Contact</a
+            >
+            <a
+              href="./all-products/index.html"
+              class="text-dark d-block mb-1 text-decoration-none"
+              >Shop</a
+            >
+            <a href="#" class="text-dark d-block text-decoration-none">FAQ</a>
+          </div>
+
+          <div class="col-md-3">
+            <h5 class="fw-bold mb-3 text-dark">Contact Us</h5>
+            <p class="mb-1">
+              <i class="bi bi-envelope text-danger me-2"></i>
+              support@example.com
+            </p>
+            <p class="mb-0">
+              <i class="bi bi-chat-dots text-primary me-2"></i> Leave us a
+              message
+            </p>
+          </div>
+          <a
+            class="col-md-3"
+            style="font-weight: 700; color: black"
+            href="../dashboard/seller-dashboard/register/index.html"
+          >
+            <i class="bi bi-person-plus-fill text-dark fs-5"></i>
+            Join as Seller</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <footer
+      style="
+        background: var(--white-color);
+        border-top: 3px solid var(--black-color);
+      "
+      class="container-fluid d-flex justify-content-center align-items-center"
+    >
+      copyright 2025 by
+      <img style="width: 100px" src="./assets/copyright.png" alt="" />
+    </footer>
+
+    <script src="main.js" type="module"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
