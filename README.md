@@ -1,77 +1,24 @@
-customer ={
-"id": "string",
-"name": "string",
-"email": "string",
-"password": "string",
-"image": "url-or-path",
-"address": "string",
-"phone": "string",
-"numBuys": 0,
-"totalSpent": 0,
-"createdAt": "2025-04-17T20:00:00Z"
-}
+# ECommerce Website
 
-seller ={
-"id": "string",
-"name": "string",
-"email": "string",
-"password": "string",
-"phone": "string",
-"numSells": 0,
-"totalRevenue": 0,
-"createdAt": "2025-04-17T20:00:00Z"
-}
+A responsive and user-friendly e-commerce website built with HTML, CSS, JavaScript, and Bootstrap. This project features product sliders, a shopping cart, and an admin interface to manage products — providing a modern online shopping experience.
 
-product = {
-"id": "string",
-"name": "string",
-"description": "string",
-"price": 100,
-"image": "url-or-path",
-"category": "category-id",  
-"discount": 10,
-"price_after_discount": 90,
-"quantity": 1,
-"seller": "seller-id",  
-"sales": 0,
-"rating": 4.5,
-"totalStars": 13,
-"totalRatings": 20,
-"reviewIds": ["rev-id-1", "rev-id-2"],
-"createdAt": "2025-04-17T20:00:00Z"
-}
+## Features
 
-review = {
-"id": "string",
-"product": "product-id",  
-"stars": 4,
-"comment": "string",
-"customer": "customer-id",
-"createdAt": "2025-04-17T20:00:00Z"
-}
+- Responsive design compatible with desktops, tablets, and mobile devices  
+- Multiple product sliders showcasing featured, best-selling, and low-stock products  
+- Shopping cart functionality with add/remove products and quantity management  
+- Admin interface for managing product listings  
+- Clean and intuitive UI powered by Bootstrap  
+- Easy to extend and customize for different product catalogs
 
-cart = {
-"id": "string",
-"customer": "customer-id",
-"product": "product-id",
-seller: "seller-id",
-"quantity": 2,
-"total": 200,
-"createdAt": "2025-04-17T20:00:00Z"
-}
+## Technologies Used
 
-category ={
-"id": "string",
-"name": "string"
-"image": "url-or-path",
-"createdAt": "2025-04-17T20:00:00Z"
-}
+- HTML5 & CSS3  
+- JavaScript (ES5)  
+- Bootstrap 4/5 (depending on your version)  
+- No backend integration (can be extended to use APIs or databases)  
 
-site_review={
-"id": "rev-1",
-"stars": 5,
-"comment": "موقع ممتاز جدًا",
-"customer": "customer-id"
-}
+## Project Structure
+
 
 json-server --watch shared/data.json --port=5000
